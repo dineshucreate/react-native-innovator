@@ -1,0 +1,26 @@
+{
+  "name": "InnovatorRN",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.0.0-beta.53",
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "react": "16.5.0",
+    "react-native": "0.57.2"
+  },
+  "devDependencies": {
+    "babel-jest": "23.6.0",
+    "jest": "23.6.0",
+    "metro-react-native-babel-preset": "0.48.0",
+    "react-test-renderer": "16.5.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
