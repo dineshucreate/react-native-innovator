@@ -1,0 +1,18 @@
+{
+  "common": {
+    "noConnectivity": "No internet connection!",
+    "loading": "Loading...",
+    "logout_warning": "Are you sure you want to signout?",
+    "no": "NO",
+    "yes": "YES",
+    "something_went_wrong": "Something went wrong!",
+    "server_error": "Server error!"
+  },
+  "signIn": {
+    "bottomText": "Don't have an account?",
+    "bottomText2": "Sign up now.",
+    "signIn": "Sign In",
+    "email": "email",
+    "password": "password"
+  }
+}

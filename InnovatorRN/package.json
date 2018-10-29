@@ -12,7 +12,16 @@
     "@babel/preset-react": "^7.0.0-beta.53",
     "babel-preset-react-native-stage-0": "^1.0.1",
     "react": "16.5.0",
-    "react-native": "0.57.2"
+    "react-native": "0.57.2",
+    "react-native-i18n": "^2.0.15",
+    "react-native-linear-gradient": "^2.4.2",
+    "react-native-ui-kitten": "^3.0.1",
+    "react-native-vector-icons": "^6.0.2",
+    "react-navigation": "^2.0.4",
+    "react-redux": "^5.1.0",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2",
+    "remote-redux-devtools": "^0.5.13"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
