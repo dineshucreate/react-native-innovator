@@ -3,21 +3,23 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+import { connect } from 'react-redux';
 import Style from './style';
 import CTextBox from '../../../components/CTextBox';
 import CButton from '../../../components/CButton';
 import CLabel from '../../../components/CLabel';
 import { strings } from '../../../utilities/locales/i18n';
+import { loginRequest } from './action';
 
 class SignIn extends React.PureComponent {
   onSignInPress = () => {
-    const { navigation } = this.props;
-    navigation.navigate("Dashboard");
+    const { loginRequest, navigation } = this.props;
+    loginRequest('dinesh@gmail.com', 'Admin1', navigation);
   }
   onSignUpPress = () => {
     const { navigation } = this.props;
     navigation.navigate("SignUp");
-  }
+  } 
   render() {
     return (
       <View
@@ -58,4 +60,16 @@ class SignIn extends React.PureComponent {
     );
   }
 }
-export default SignIn;
+const mapStateToProps = (state) => {
+  return {
+    loading: state.loginReducer.loading,
+    loginDetails: state.loginReducer.loginDetails,
+    isError: state.loginReducer.isError,
+  };
+};
+const mapDispatchToProps = (dispatch) => ({
+  loginRequest: (email, passwordLogin, navigator) => dispatch(loginRequest(email, passwordLogin, navigator)),
+  updateInput: (key, value) => dispatch(loginUpdateInput(key, value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

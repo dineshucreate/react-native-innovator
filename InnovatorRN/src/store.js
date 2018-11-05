@@ -10,4 +10,3 @@ export default store = createStore(
     composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 sagaMiddleware.run(rootSaga);
-export default store;

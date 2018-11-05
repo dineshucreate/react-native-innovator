@@ -1,5 +1,5 @@
 import { fork } from 'redux-saga/effects';
-import loginSaga from './containers/OnBoarding/Login/saga';
+import loginSaga from './containers/onBoarding/SignIn/saga';
 
 const root = function* rootSaga() {
   yield [

@@ -2,7 +2,8 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import { LOGIN_REQUESTED, REQUEST_SUCCESS } from './constants';
 
 function* onLoginRequested({ email, passwordLogin, navigator }) {
-
+    alert('Login Successfully');
+    navigator.navigate("Dashboard");
 }
 function* onRequestSuccess({ data, navigator }) {
 

@@ -6,10 +6,10 @@ import {
     CLEAR_LOGIN,
   } from './constants';
   
-  export const loginRequested = (email, passwordLogin, navigator) => ({
+  export const loginRequest = (email, password, navigator) => ({
     type: LOGIN_REQUESTED,
     email,
-    passwordLogin,
+    password,
     navigator,
   });
   export const requestSuccess = (data, navigator) => ({

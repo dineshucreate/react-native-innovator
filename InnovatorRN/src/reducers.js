@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import LoginReducer from './containers/OnBoarding/Login/reducers';
+import LoginReducer from './containers/onBoarding/SignIn/reducer';
 
 const appReducer = combineReducers({
   loginReducer: LoginReducer,
