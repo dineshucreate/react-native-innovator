@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import {
   TouchableOpacity,
-  View
-} from "react-native";
+  View,
+} from 'react-native';
 import { connect } from 'react-redux';
 import Style from './style';
 import CTextBox from '../../../components/CTextBox';
 import CButton from '../../../components/CButton';
 import CLabel from '../../../components/CLabel';
 import { strings } from '../../../utilities/locales/i18n';
-import { loginRequest } from './action';
+import { loginRequest, loginUpdateInput } from './action';
 
 class SignIn extends React.PureComponent {
   onSignInPress = () => {
@@ -18,8 +18,8 @@ class SignIn extends React.PureComponent {
   }
   onSignUpPress = () => {
     const { navigation } = this.props;
-    navigation.navigate("SignUp");
-  } 
+    navigation.navigate('SignUp');
+  }
   render() {
     return (
       <View
@@ -29,13 +29,13 @@ class SignIn extends React.PureComponent {
           <CTextBox
             placeHolderText={strings('signIn.email')}
             onChangeText={(value) => { }}
-            leftIcon='envelope-o'
+            leftIcon="envelope-o"
             keyboardType="email-address"
           />
           <CTextBox
             placeHolderText={strings('signIn.password')}
             onChangeText={(value) => { }}
-            leftIcon='lock'
+            leftIcon="lock"
             hidePassword={true}
           />
           <CButton
@@ -48,8 +48,10 @@ class SignIn extends React.PureComponent {
             style={Style.bottomLabelStyle}
             text={strings('signIn.bottomText')}
           />
-          <TouchableOpacity style={{ alignSelf: 'center' }}
-            onPress={this.onSignUpPress}>
+          <TouchableOpacity
+            style={{ alignSelf: 'center' }}
+            onPress={this.onSignUpPress}
+          >
             <CLabel
               style={{ color: '#0000EE', marginLeft: 5 }}
               text={strings('signIn.bottomText2')}

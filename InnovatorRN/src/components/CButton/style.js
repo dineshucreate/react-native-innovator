@@ -26,5 +26,4 @@ const style = StyleSheet.create({
     opacity: 0.4,
   },
 });
-
 export default style;
