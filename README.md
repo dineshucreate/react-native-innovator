@@ -4,7 +4,7 @@
 1. Ensure you've followed the [React Native - Get Started Guide](https://facebook.github.io/react-native/docs/getting-started.html)
 1. Clone this project `git clone https://github.com/dineshucreate/react-native-innovator.git`
 1. Run `npm install` from root directory
-1. Start the app in [an emulator](/docs/quick-tips.md#running-in-an-emulator)
+1. Start the app on emulator/simulator or physical devices
 
 ## Stack
 - [React Native](https://facebook.github.io/react-native/) for building mobile apps using Javascript
