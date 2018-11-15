@@ -13,6 +13,9 @@
 - [Babel](http://babeljs.io/) for ES6+ support
 - [React Navigation](https://github.com/react-community/react-navigation) navigation for React Native
 - [React Native i18n](https://github.com/AlexanderZaytsev/react-native-i18n) i18n for Multilanguage 
+- [React Native Vector Icons](https://www.npmjs.com/package/react-native-vector-icons) for buttons, logos and nav/tab bars 
+- [ESLint](https://medium.com/the-react-native-log/getting-eslint-right-in-react-native-bd27524cc77b) for identifying and reporting on patterns found in ECMAScript/JavaScript code
+
 
 ## Common problems
   Most likely another process is already using this port
