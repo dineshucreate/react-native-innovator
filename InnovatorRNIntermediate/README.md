@@ -1,4 +1,4 @@
-# react-native-innovator
+# react-native-innovator Intermediate(Hiker)
 
 ## Getting Started
 1. Ensure you've followed the [React Native - Get Started Guide](https://facebook.github.io/react-native/docs/getting-started.html)
