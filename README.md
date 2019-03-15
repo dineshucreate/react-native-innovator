@@ -10,7 +10,7 @@
 - [React Native Vector Icons](https://www.npmjs.com/package/react-native-vector-icons) for buttons, logos and nav/tab bars 
 - [ESLint](https://medium.com/the-react-native-log/getting-eslint-right-in-react-native-bd27524cc77b) for identifying and reporting on patterns found in ECMAScript/JavaScript code
 
-## ReactNativeInnovator (Hiker) (Intermediator)
+## ReactNativeInnovator (Hiker) (Intermediate)
 - [Push Notifications](https://rnfirebase.io/docs/v5.x.x/notifications/introduction) push notification for mobile apps.
 - [Navigation Drawer](https://reactnavigation.org/docs/en/drawer-navigator.html) provide navigation drawer for mobile apps.
 - [Tab Navigator](https://reactnavigation.org/docs/en/bottom-tab-navigator.html) to switch between different routes.
