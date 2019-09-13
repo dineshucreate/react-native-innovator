@@ -27,7 +27,6 @@ project.xcworkspace
 build/
 .idea
 .gradle
-android/gradle.properties
 local.properties
 *.iml
 
@@ -55,3 +54,6 @@ buck-out/
 
 # Bundle artifact
 *.jsbundle
+
+# CocoaPods
+/ios/Pods/
