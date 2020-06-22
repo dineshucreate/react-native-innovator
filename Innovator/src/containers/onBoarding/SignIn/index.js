@@ -7,6 +7,7 @@ import CButton from '../../../components/CButton';
 import CLabel from '../../../components/CLabel';
 import {strings} from '../../../utilities/locales/i18n';
 import {loginRequest, loginUpdateInput} from './action';
+import {screenNames} from '../../../utilities/constants';
 
 class SignIn extends React.PureComponent {
   onSignInPress = () => {
@@ -15,7 +16,7 @@ class SignIn extends React.PureComponent {
   };
   onSignUpPress = () => {
     const {navigation} = this.props;
-    navigation.navigate('SignUp');
+    navigation.navigate(screenNames.SignUp);
   };
   render() {
     return (

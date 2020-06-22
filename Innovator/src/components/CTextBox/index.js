@@ -35,7 +35,6 @@ class CTextBox extends PureComponent {
           maxLength={maxLength}
           editable={editable}
           selectionColor={Colors.black}
-          color={Colors.black}
         />
       </View>
     );

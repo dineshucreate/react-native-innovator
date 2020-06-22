@@ -1,16 +1,37 @@
-import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import React from 'react';
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
+
 import SignIn from '../src/containers/onBoarding/SignIn';
 import SignUp from '../src/containers/onBoarding/SignUp';
 import Dashboard from '../src/containers/Home/Dashboard';
-const AuthStack = createStackNavigator(
-  {
-    SignIn,
-    SignUp,
-    Dashboard,
-  },
-  {
-    headerMode: 'none',
-  },
+import {screenNames} from './utilities/constants';
+
+const AuthStack = createStackNavigator();
+
+const AuthNavigator = () => (
+  <AuthStack.Navigator
+    screenOptions={{
+      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+    }}>
+    <AuthStack.Screen
+      name={screenNames.SignIn}
+      component={SignIn}
+      options={{headerShown: false}}
+    />
+    <AuthStack.Screen
+      name={screenNames.SignUp}
+      component={SignUp}
+      options={{headerShown: false}}
+    />
+    <AuthStack.Screen
+      name={screenNames.Dashboard}
+      component={Dashboard}
+      options={{headerShown: false}}
+    />
+  </AuthStack.Navigator>
 );
-export default createAppContainer(AuthStack);
+
+export default AuthNavigator;
