@@ -1,17 +1,17 @@
 # react-native-innovator
 
 ## Getting Started
-1. Ensure you've followed the [React Native - Get Started Guide](https://facebook.github.io/react-native/docs/getting-started.html)
+1. Ensure you've followed the [React Native - Get Started Guide](https://reactnative.dev/docs/getting-started.html)
 1. Clone this project `git clone https://github.com/uCreateit/react-native-innovator.git`
 1. Run `npm install` from root directory
-1. Start the app in [an emulator](/docs/quick-tips.md#running-in-an-emulator)
+1. Start the app in an emulator
 
 ## Stack
 - [React Native](https://facebook.github.io/react-native/) for building mobile apps using Javascript
-- [Redux](http://rackt.github.io/redux/index.html) a predictable state container for Javascript apps
+- [Redux](https://redux.js.org/) a predictable state container for Javascript apps
 - [Redux Saga](https://github.com/redux-saga/redux-saga) middleware for Redux
 - [Babel](http://babeljs.io/) for ES6+ support
-- [React Navigation](https://github.com/react-community/react-navigation) navigation for React Native
+- [React Navigation](https://reactnavigation.org/) navigation for React Native
 - [React Hooks](https://reactjs.org/docs/hooks-intro.html) for state management in functional components
 
 ## Common problems
