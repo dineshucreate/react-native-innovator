@@ -39,10 +39,18 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.1.0",
     "eslint": "^7.3.0",
+    "husky": "^4.3.0",
     "jest": "^26.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
     "react-test-renderer": "16.11.0",
     "regenerator-runtime": "^0.13.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm test",
+      "post-merge": "bash ./scripts/checkForDependencyChange"
+    }
   },
   "jest": {
     "preset": "react-native",
