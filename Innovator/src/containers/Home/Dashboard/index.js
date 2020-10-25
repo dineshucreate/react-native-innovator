@@ -12,7 +12,7 @@ class DashBoard extends React.PureComponent {
     return (
       <View style={Style.constainer}>
         <TouchableOpacity onPress={this.onCrossPress}>
-          <FontAwesome name="times" size={36} style={{color: '#4A4A4A'}} />
+          <FontAwesome name="times" size={36} style={Style.crossButton} />
         </TouchableOpacity>
         <Text style={Style.textStyle}>Welcome To Dashboard!!!</Text>
       </View>

@@ -12,7 +12,7 @@ class CButton extends PureComponent {
       disabled,
     } = this.props;
     return (
-      <View style={style.buttonContainerStyle}>
+      <View style={[style.buttonContainerStyle, buttonContainerStyle]}>
         <TouchableOpacity
           style={style.buttonStyle}
           onPress={onPress}

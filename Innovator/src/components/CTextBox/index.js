@@ -21,7 +21,7 @@ class CTextBox extends PureComponent {
     return (
       <View style={[Style.container, containerStyle]}>
         <View style={Style.iconContainer}>
-          <FontAwesome name={leftIcon} size={20} style={{color: '#4A4A4A'}} />
+          <FontAwesome name={leftIcon} size={20} style={Style.icon} />
         </View>
         <TextInput
           style={[Style.input, style]}
