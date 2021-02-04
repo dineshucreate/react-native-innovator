@@ -30,6 +30,9 @@ const style = StyleSheet.create({
     flex: 0.1,
     paddingLeft: 10,
   },
+  icon: {
+    color: '#4A4A4A',
+  },
 });
 
 export default style;

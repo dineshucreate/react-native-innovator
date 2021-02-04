@@ -16,7 +16,7 @@ export const requestSuccess = (data, navigator) => ({
   data,
   navigator,
 });
-export const requestFailed = error => ({
+export const requestFailed = (error) => ({
   type: REQUEST_FAIL,
   error,
 });
@@ -25,7 +25,7 @@ export const loginUpdateInput = (key, value) => ({
   key,
   value,
 });
-export const clearLogin = isError => ({
+export const clearLogin = (isError) => ({
   type: CLEAR_LOGIN,
   isError,
 });

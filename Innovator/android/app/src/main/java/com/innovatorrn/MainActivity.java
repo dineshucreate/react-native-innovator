@@ -1,4 +1,4 @@
-package com.innovatorrn;
+package com.rn.innovator;
 
 import com.facebook.react.ReactActivity;
 

@@ -24,13 +24,13 @@ class SignIn extends React.PureComponent {
         <View style={Style.all}>
           <CTextBox
             placeHolderText={strings('signIn.email')}
-            onChangeText={value => {}}
+            onChangeText={(value) => {}}
             leftIcon="envelope-o"
             keyboardType="email-address"
           />
           <CTextBox
             placeHolderText={strings('signIn.password')}
-            onChangeText={value => {}}
+            onChangeText={(value) => {}}
             leftIcon="lock"
             hidePassword={true}
           />
@@ -57,20 +57,17 @@ class SignIn extends React.PureComponent {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     loading: state.loginReducer.loading,
     loginDetails: state.loginReducer.loginDetails,
     isError: state.loginReducer.isError,
   };
 };
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   loginRequestAction: (email, passwordLogin, navigator) =>
     dispatch(loginRequest(email, passwordLogin, navigator)),
   updateInput: (key, value) => dispatch(loginUpdateInput(key, value)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

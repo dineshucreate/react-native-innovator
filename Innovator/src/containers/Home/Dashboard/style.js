@@ -9,5 +9,6 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 25,
   },
+  crossButton: {color: '#4A4A4A'},
 });
 export default styles;
