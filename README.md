@@ -13,6 +13,7 @@
 - [Babel](http://babeljs.io/) for ES6+ support
 - [React Navigation](https://reactnavigation.org/) navigation for React Native
 - [React Hooks](https://reactjs.org/docs/hooks-intro.html) for state management in functional components
+- [Reviewee-Circle CI config doc](./REVIEWEE_CIRCLE_CI_CONFIG.md) for setting up reviewee notification on slack
 
 ## Common problems
   Most likely another process is already using this port
