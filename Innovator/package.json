@@ -12,8 +12,9 @@
     "lint:js": "npm run lint:eslint -- . ",
     "lint:staged": "lint-staged",
     "podInstall": "npx pod-install ios",
-    "checkForbiddenWords": "node ./scripts/checkForbiddenWords.js"
-
+    "checkForbiddenWords": "node ./scripts/checkForbiddenWords.js",
+    "testSnapshots": "yarn test .snap.spec.js",
+    "testUnits": "yarn test .unit.spec.js"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
@@ -51,6 +52,7 @@
     "hooks": {
       "commit-msg": "node ./scripts/checkCommitMsg.js $HUSKY_GIT_PARAMS",
       "pre-commit": "npm run checkForbiddenWords&npm run lint",
+      "pre-push": "npm run testUnits & npm run testSnapshots",
       "post-merge": "bash ./scripts/checkForDependencyChange"
     }
   },
