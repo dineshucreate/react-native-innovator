@@ -909,9 +909,9 @@
     source-map "^0.6.0"
     string-length "^4.0.1"
     terminal-link "^2.0.0"
-    v8-to-istanbul "^6.0.1"
+    v8-to-istanbul "^4.1.3"
   optionalDependencies:
-    node-notifier "^8.0.0"
+    node-notifier "^7.0.0"
 
 "@jest/source-map@^24.9.0":
   version "24.9.0"
@@ -1007,8 +1007,7 @@
   integrity sha512-GXigDDsp6ZlNMhXQDeuy/iYCDsRIHJabWtDzvnn36+aqFfG14JmFV0e/iXxY4SP9vbXSiPNOWdehU5MeqrYHBQ==
   dependencies:
     "@types/istanbul-lib-coverage" "^2.0.0"
-    "@types/istanbul-reports" "^3.0.0"
-    "@types/node" "*"
+    "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
@@ -3844,7 +3843,7 @@ jest-cli@^26.1.0:
     jest-util "^26.1.0"
     jest-validate "^26.1.0"
     prompts "^2.0.1"
-    yargs "^15.4.1"
+    yargs "^15.3.1"
 
 jest-config@^26.1.0:
   version "26.1.0"
@@ -3957,7 +3956,6 @@ jest-haste-map@^26.1.0:
   dependencies:
     "@jest/types" "^26.1.0"
     "@types/graceful-fs" "^4.1.2"
-    "@types/node" "*"
     anymatch "^3.0.3"
     fb-watchman "^2.0.0"
     graceful-fs "^4.2.4"
@@ -3967,6 +3965,7 @@ jest-haste-map@^26.1.0:
     micromatch "^4.0.2"
     sane "^4.0.3"
     walker "^1.0.7"
+    which "^2.0.2"
   optionalDependencies:
     fsevents "^2.1.2"
 
@@ -4083,7 +4082,7 @@ jest-resolve@^26.1.0:
     jest-pnp-resolver "^1.2.1"
     jest-util "^26.1.0"
     read-pkg-up "^7.0.1"
-    resolve "^1.18.1"
+    resolve "^1.17.0"
     slash "^3.0.0"
 
 jest-runner@^26.1.0:
@@ -4096,7 +4095,6 @@ jest-runner@^26.1.0:
     "@jest/test-result" "^26.1.0"
     "@jest/types" "^26.1.0"
     chalk "^4.0.0"
-    emittery "^0.7.1"
     exit "^0.1.2"
     graceful-fs "^4.2.4"
     jest-config "^26.1.0"
@@ -4127,7 +4125,6 @@ jest-runtime@^26.1.0:
     "@jest/types" "^26.1.0"
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
-    cjs-module-lexer "^0.4.2"
     collect-v8-coverage "^1.0.0"
     exit "^0.1.2"
     glob "^7.1.3"
@@ -4143,7 +4140,7 @@ jest-runtime@^26.1.0:
     jest-validate "^26.1.0"
     slash "^3.0.0"
     strip-bom "^4.0.0"
-    yargs "^15.4.1"
+    yargs "^15.3.1"
 
 jest-serializer@^24.4.0, jest-serializer@^24.9.0:
   version "24.9.0"
@@ -4155,7 +4152,6 @@ jest-serializer@^26.1.0:
   resolved "https://registry.yarnpkg.com/jest-serializer/-/jest-serializer-26.1.0.tgz#72a394531fc9b08e173dc7d297440ac610d95022"
   integrity sha512-eqZOQG/0+MHmr25b2Z86g7+Kzd5dG9dhCiUoyUNJPgiqi38DqbDEOlHcNijyfZoj74soGBohKBZuJFS18YTJ5w==
   dependencies:
-    "@types/node" "*"
     graceful-fs "^4.2.4"
 
 jest-snapshot@^26.1.0:
@@ -4228,7 +4224,7 @@ jest-validate@^26.1.0:
     "@jest/types" "^26.1.0"
     camelcase "^6.0.0"
     chalk "^4.0.0"
-    jest-get-type "^26.3.0"
+    jest-get-type "^26.0.0"
     leven "^3.1.0"
     pretty-format "^26.1.0"
 
@@ -4257,7 +4253,6 @@ jest-worker@^26.1.0:
   resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-26.1.0.tgz#65d5641af74e08ccd561c240e7db61284f82f33d"
   integrity sha512-Z9P5pZ6UC+kakMbNJn+tA2RdVdNX5WH1x+5UCBZ9MxIK24pjYtFt96fK+UwBTrjLYm232g1xz0L3eTh51OW+yQ==
   dependencies:
-    "@types/node" "*"
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
@@ -5582,7 +5577,7 @@ pretty-format@^26.1.0:
     "@jest/types" "^26.1.0"
     ansi-regex "^5.0.0"
     ansi-styles "^4.0.0"
-    react-is "^17.0.1"
+    react-is "^16.12.0"
 
 private@^0.1.8:
   version "0.1.8"
@@ -5689,6 +5684,11 @@ react-is@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
+
+react-native-config@^1.3.3:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.4.2.tgz#cc39f22ed72c5cb06af1adf0ba70ef01593900b4"
+  integrity sha512-iTvCvThvFTH7SdiBcsxYtpLy86zglsh51ZBqFPPZ75tdrQMdlRnDNnb86kNjQf03KT0qs1nCMLRejfPMIim8iA==
 
 react-native-gesture-handler@^1.8.0:
   version "1.8.0"
