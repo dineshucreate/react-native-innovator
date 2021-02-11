@@ -53,8 +53,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "node ./scripts/checkCommitMsg.js $HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run checkForbiddenWords&npm run lint",
-      "pre-push": "npm run testUnits & npm run testSnapshots",
+      "pre-commit": "npm run testUnits&npm run testSnapshots&npm run checkForbiddenWords&npm run lint",
       "post-merge": "bash ./scripts/checkForDependencyChange"
     }
   },
