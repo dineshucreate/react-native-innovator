@@ -12,7 +12,8 @@ export const request = (config: AxiosRequestConfig) =>
   axios(config).then((response) => {
     const exceptionUrls = [URLS.LOGIN];
     if (response.status >= 400 && !config?.data?.password) {
-      console.info(response);
+      // handle failed requests, the check for the password in the data is to not send
+      // password related requests to bug reporting tools (just suggestion)
     }
     if (
       response.status === 401 &&
@@ -25,9 +26,6 @@ export const request = (config: AxiosRequestConfig) =>
       response.status === 401 &&
       !exceptionUrls.includes(response.config.url)
     ) {
-      const authorization = response.config.headers?.Authorization ?? '';
-      const authorizationArray = authorization.split(' ');
-      const accessToken = authorizationArray[1];
       //call logout action returning the store to its initial state, removing data in the async storage
       // and any other related date
       //logout();
