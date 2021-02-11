@@ -18,7 +18,7 @@ async function searchFilesInDirectoryAsync(dir, filter, ext) {
 
     const regex = new RegExp(filter);
     if (
-      regex.test(fileContent.toLowerCase()) &&
+      regex.test(JSON.stringify(fileContent.toLowerCase())) &&
       file.indexOf('checkForbiddenWords.js') === -1
     ) {
       console.error(`word reference found in file: ${file}`);
@@ -52,7 +52,7 @@ async function getFilesInDirectoryAsync(dir, ext) {
   return files;
 }
 
-searchFilesInDirectoryAsync('./', 'some specific word', '.js')
+searchFilesInDirectoryAsync('./', 'console', '.js')
   .then((filesWithForbiddenWords) => {
     const filesToCheck = filesWithForbiddenWords.filter(
       (filepath) => filepath.indexOf('checkForbiddenWords.js') === -1,
