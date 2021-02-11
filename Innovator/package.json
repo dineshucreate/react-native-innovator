@@ -8,10 +8,11 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "podInstall": "npx pod-install ios",
-    "lint:fix": "eslint . --fix"
-
+    "checkForbiddenWords": "node ./scripts/checkForbiddenWords.js",
+    "testSnapshots": "yarn test .snap.spec.js",
+    "testUnits": "yarn test .unit.spec.js"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
@@ -50,8 +51,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm test",
+      "commit-msg": "node ./scripts/checkCommitMsg.js $HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run testUnits&npm run testSnapshots&npm run checkForbiddenWords&npm run lint",
       "post-merge": "bash ./scripts/checkForDependencyChange"
     }
   },
@@ -65,3 +66,4 @@
     ]
   }
 }
+
