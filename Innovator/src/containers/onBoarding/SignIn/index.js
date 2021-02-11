@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View, SafeAreaView} from 'react-native';
 import {connect} from 'react-redux';
 import Style from './style';
 import CTextBox from '../../../components/CTextBox';
@@ -8,6 +8,7 @@ import CLabel from '../../../components/CLabel';
 import {strings} from '../../../utilities/locales/i18n';
 import {loginRequest, loginUpdateInput} from './action';
 import {screenNames} from '../../../utilities/constants';
+import config from '../../../config';
 
 class SignIn extends React.PureComponent {
   onSignInPress = () => {
@@ -20,7 +21,11 @@ class SignIn extends React.PureComponent {
   };
   render() {
     return (
-      <View style={Style.screen}>
+      <SafeAreaView style={Style.screen}>
+        <CLabel
+          style={Style.bottomLabelStyle}
+          text={`API_BASE_URL: ${config.API_BASE_URL}`}
+        />
         <View style={Style.all}>
           <CTextBox
             placeHolderText={strings('signIn.email')}
@@ -53,7 +58,7 @@ class SignIn extends React.PureComponent {
             />
           </TouchableOpacity>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
