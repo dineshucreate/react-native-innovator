@@ -7,9 +7,8 @@ import CButton from '../../../components/CButton';
 import CLabel from '../../../components/CLabel';
 import {strings} from '../../../utilities/locales/i18n';
 import {loginRequest, loginUpdateInput} from './action';
-import {screenNames} from '../../../utilities/constants';
+import {screenNames, testIds} from '../../../utilities/constants';
 import config from '../../../config';
-
 class SignIn extends React.PureComponent {
   onSignInPress = () => {
     const {loginRequestAction, navigation} = this.props;
@@ -25,6 +24,7 @@ class SignIn extends React.PureComponent {
         <CLabel
           style={Style.bottomLabelStyle}
           text={`API_BASE_URL: ${config.API_BASE_URL}`}
+          testID={testIds.abiBaseURL}
         />
         <View style={Style.all}>
           <CTextBox

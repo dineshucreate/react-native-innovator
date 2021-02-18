@@ -5,3 +5,7 @@ export const requestMethods = {
   delete: 'DELETE',
   patch: 'PATCH',
 };
+
+export const testIds = {
+  abiBaseURL: 'abiBaseURL',
+};
