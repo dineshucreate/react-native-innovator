@@ -5,7 +5,8 @@
   "scripts": {
     "androidStagingDebug": "react-native run-android --variant=stagingDebug --appIdSuffix=staging",
     "androidProductionDebug": "react-native run-android --variant=productionDebug --appIdSuffix=production",
-    "ios": "react-native run-ios",
+    "iosStagingDebug": "react-native run-ios --scheme 'InnovatorRN_Staging'",
+    "iosProductionDebug": "react-native run-ios --scheme 'InnovatorRN_Production'",
     "start": "react-native start",
     "test": "npx cross-env NODE_ENV=test jest -i -ci",
     "lint": "eslint . --fix",
