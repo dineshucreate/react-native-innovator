@@ -1,6 +1,6 @@
 import {takeEvery, put, call} from 'redux-saga/effects';
 import {LOGIN_REQUESTED, REQUEST_SUCCESS} from './constants';
-import {screenNames} from '../../../utilities/constants';
+import {screenNames} from '../../../utilities/constants/navigationConstants';
 import {navigate} from '../../../utilities/NavigationService';
 
 function* onLoginRequested({email, passwordLogin, navigator}) {

@@ -1,5 +1,5 @@
 import Axios, {AxiosRequestConfig} from 'axios';
-import {URLS} from '../src/utilities/constants';
+import {URLS} from '../src/utilities/constants/paths/urls';
 import {strings} from '../src/utilities/locales/i18n';
 
 export const axios = Axios.create({

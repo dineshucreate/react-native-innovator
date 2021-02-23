@@ -1,5 +1,5 @@
 import wd from 'wd';
-import {testIds} from '../../../src/utilities/Constants';
+import {testIds} from '../../../src/utilities/Constants/appConstants';
 export default async (driver, PlatformOS) => {
   if (PlatformOS === 'ios') {
     const action = new wd.TouchAction(driver);
