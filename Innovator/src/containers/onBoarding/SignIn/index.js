@@ -5,10 +5,10 @@ import Style from './style';
 import CTextBox from '../../../components/CTextBox';
 import CButton from '../../../components/CButton';
 import CLabel from '../../../components/CLabel';
-import {strings} from '../../../utilities/locales/i18n';
+import {strings} from '../../../../locales/i18n';
 import {loginRequest, loginUpdateInput} from './action';
-import {testIds} from '../../../utilities/constants/appConstants';
-import {screenNames} from '../../../utilities/constants/navigationConstants';
+import {testIds} from '../../../../constants/appConstants';
+import {screenNames} from '../../../../navigation/navigationConstants';
 import config from '../../../config';
 class SignIn extends React.PureComponent {
   onSignInPress = () => {
