@@ -1,7 +1,7 @@
 import {takeEvery, put, call} from 'redux-saga/effects';
 import {LOGIN_REQUESTED, REQUEST_SUCCESS} from './constants';
-import {screenNames} from '../../../../navigation/navigationConstants';
-import {navigate} from '../../../../navigation/NavigationService';
+import {screenNames} from '../../../navigation/navigationConstants';
+import {navigate} from '../../../navigation/NavigationService';
 
 function* onLoginRequested({email, passwordLogin, navigator}) {
   alert('Login Successfully');

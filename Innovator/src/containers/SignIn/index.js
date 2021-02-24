@@ -2,14 +2,14 @@ import React from 'react';
 import {TouchableOpacity, View, SafeAreaView} from 'react-native';
 import {connect} from 'react-redux';
 import Style from './style';
-import CTextBox from '../../../components/CTextBox';
-import CButton from '../../../components/CButton';
-import CLabel from '../../../components/CLabel';
-import {strings} from '../../../../locales/i18n';
+import CTextBox from '../../components/CTextBox';
+import CButton from '../../components/CButton';
+import CLabel from '../../components/CLabel';
+import {strings} from '../../../locales/i18n';
 import {loginRequest, loginUpdateInput} from './action';
-import {testIds} from '../../../../constants/appConstants';
-import {screenNames} from '../../../../navigation/navigationConstants';
-import config from '../../../config';
+import {testIds} from '../../../constants/appConstants';
+import {screenNames} from '../../../navigation/navigationConstants';
+import config from '../../config';
 class SignIn extends React.PureComponent {
   onSignInPress = () => {
     const {loginRequestAction, navigation} = this.props;
