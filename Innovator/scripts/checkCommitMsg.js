@@ -8,6 +8,7 @@ const message = fs.readFileSync(absoluteFilePath, 'utf-8');
 const trelloRegExp = /^chore:\s.+\n(\s*)https:\/\/trello.com\/c\/([0-9a-zA-Z]{8})/;
 const fixcommitRegExp = /^fix:\s.+\n(\s*)https:\/\/trello.com\/c\/([0-9a-zA-Z]{8})/;
 const featcommitRegExp = /^feat:\s.+\n(\s*)https:\/\/trello.com\/c\/([0-9a-zA-Z]{8})/;
+const docsCommitRegExp = /^docs:\s.+\n(\s*)https:\/\/trello.com\/c\/([0-9a-zA-Z]{8})/;
 const fixRegExp = /^fixed sha /;
 const preReleaseRegExp = /^chore\(release\): /;
 
@@ -16,9 +17,10 @@ if (
   !trelloRegExp.test(message) &&
   !preReleaseRegExp.test(message.toLowerCase()) &&
   !fixcommitRegExp.test(message.toLowerCase()) &&
-  !featcommitRegExp.test(message.toLowerCase())
+  !featcommitRegExp.test(message.toLowerCase()) &&
+  !docsCommitRegExp.test(message.toLowerCase())
 ) {
   throw new Error(
-    '⭕ Invalid commit message: please use \n Reviewee "fixed sha <sha>" OR \n feat: <newFeature> \n fix: <fixIssue> \n chore: <chore> \n with a link to the corresponding Trello card in a new line after each',
+    '⭕ Invalid commit message: please use \n Reviewee "fixed sha <sha>" OR \n feat: <newFeature> \n fix: <fixIssue> \n chore: <chore> \n docs: <docs> \n with a link to the corresponding Trello card in a new line after each',
   );
 }
