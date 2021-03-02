@@ -1,52 +1,39 @@
 import {
-  LOGIN_REQUESTED,
-  REQUEST_SUCCESS,
-  REQUEST_FAIL,
-  UPDATE_INPUT,
-  CLEAR_LOGIN,
-} from './constants';
-
+  loginRequest,
+  requestFailed,
+  requestSuccess,
+  loginUpdateInput,
+  clearLogin,
+} from './action';
+import {createReducer} from '@reduxjs/toolkit';
 const INITIAL_STATE = {
   loginData: {},
   loading: false,
   error: null,
+  isError: false,
   loginDetails: {
     email: '',
     passwordLogin: '',
   },
 };
-export default (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case LOGIN_REQUESTED:
-      return {
-        ...state,
-        loading: true,
-      };
-    case REQUEST_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        loginData: action.data,
-      };
-    case REQUEST_FAIL:
-      return {
-        ...state,
-        loading: false,
-        error: action.error,
-        isError: true,
-      };
-    case UPDATE_INPUT:
-      return {
-        ...state,
-        loginDetails: {...state.loginDetails, [action.key]: action.value},
-      };
 
-    case CLEAR_LOGIN:
-      return {
-        ...state,
-        error: '',
-      };
-    default:
-      return state;
-  }
-};
+export const loginReducer = createReducer(INITIAL_STATE, {
+  [loginRequest.type]: (state, action) => {
+    state.loading = true;
+  },
+  [requestSuccess.type]: (state, action) => {
+    const {data} = action.payload;
+    (state.loading = false), (state.loginData = data);
+  },
+  [requestFailed.type]: (state, action) => {
+    const {error} = action.payload;
+    (state.loading = false), (state.error = error), (state.isError = true);
+  },
+  [loginUpdateInput.type]: (state, action) => {
+    const {key, value} = action.payload;
+    state.loginDetails[key] = value;
+  },
+  [clearLogin.type]: (state, action) => {
+    state.error = '';
+  },
+});

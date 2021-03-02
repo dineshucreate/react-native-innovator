@@ -5,27 +5,14 @@ import {
   UPDATE_INPUT,
   CLEAR_LOGIN,
 } from './constants';
-export const loginRequest = (email, password, navigator) => ({
-  type: LOGIN_REQUESTED,
-  email,
-  password,
-  navigator,
-});
-export const requestSuccess = (data, navigator) => ({
-  type: REQUEST_SUCCESS,
-  data,
-  navigator,
-});
-export const requestFailed = (error) => ({
-  type: REQUEST_FAIL,
-  error,
-});
-export const loginUpdateInput = (key, value) => ({
-  type: UPDATE_INPUT,
-  key,
-  value,
-});
-export const clearLogin = (isError) => ({
-  type: CLEAR_LOGIN,
-  isError,
-});
+import {createAction} from '@reduxjs/toolkit';
+
+export const loginRequest = createAction(LOGIN_REQUESTED);
+
+export const requestSuccess = createAction(REQUEST_SUCCESS);
+
+export const requestFailed = createAction(REQUEST_FAIL);
+
+export const loginUpdateInput = createAction(UPDATE_INPUT);
+
+export const clearLogin = createAction(CLEAR_LOGIN);
