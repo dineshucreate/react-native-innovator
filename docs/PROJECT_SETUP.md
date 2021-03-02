@@ -19,7 +19,7 @@ Assuming that you have followed up the [Initial Getting Started Guide](https://r
 
 4. Installing the pods (iOS only)
   
-      `cd ios && pod install && cd ..`
+      `cd ios && pod install`
 
 5. Running the builds
       We can run the android and iOS builds either from the command-line or from the Android Studio and Xcode.
