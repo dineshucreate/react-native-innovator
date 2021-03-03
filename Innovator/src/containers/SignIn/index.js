@@ -12,8 +12,8 @@ import {screenNames} from '../../../navigation/navigationConstants';
 import config from '../../config';
 class SignIn extends React.PureComponent {
   onSignInPress = () => {
-    const {loginRequestAction, navigation} = this.props;
-    loginRequestAction('dinesh@gmail.com', 'Admin1', navigation);
+    const {loginRequestAction} = this.props;
+    loginRequestAction({email: 'dinesh@gmail.com', passwordLogin: 'Admin1'});
   };
   onSignUpPress = () => {
     const {navigation} = this.props;
@@ -71,8 +71,8 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => ({
-  loginRequestAction: (email, passwordLogin, navigator) =>
-    dispatch(loginRequest(email, passwordLogin, navigator)),
+  loginRequestAction: (email, passwordLogin) =>
+    dispatch(loginRequest(email, passwordLogin)),
   updateInput: (key, value) => dispatch(loginUpdateInput(key, value)),
 });
 

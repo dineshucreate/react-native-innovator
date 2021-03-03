@@ -3,11 +3,14 @@ import {LOGIN_REQUESTED, REQUEST_SUCCESS} from './constants';
 import {screenNames} from '../../../navigation/navigationConstants';
 import {navigate} from '../../../navigation/NavigationService';
 
-function* onLoginRequested({email, passwordLogin, navigator}) {
+function* onLoginRequested(props) {
+  const {
+    payload: {email},
+  } = props;
   alert('Login Successfully');
-  navigate(screenNames.Dashboard);
+  navigate(screenNames.Dashboard, {email});
 }
-function* onRequestSuccess({data, navigator}) {}
+function* onRequestSuccess({data}) {}
 function* sagaLogin() {
   yield takeEvery(LOGIN_REQUESTED, onLoginRequested);
   yield takeEvery(REQUEST_SUCCESS, onRequestSuccess);
