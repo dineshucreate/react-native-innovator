@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {scale, scaleVertical} from '../../../utilities/scale';
+import {scale, scaleVertical} from '../../utilities/scale';
 
 const styles = StyleSheet.create({
   screen: {

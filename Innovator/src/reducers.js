@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import LoginReducer from './containers/onBoarding/SignIn/reducer';
+import {loginReducer} from './containers/SignIn/reducer';
 
 const appReducer = combineReducers({
-  loginReducer: LoginReducer,
+  loginReducer,
 });
 
 const rootReducer = (state, action) => {

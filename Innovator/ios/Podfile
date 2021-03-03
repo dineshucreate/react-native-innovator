@@ -1,7 +1,16 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0'
+platform :ios, '11.0'
+
+project 'InnovatorRN',
+  'Debug' => :debug,
+  'Release' => :release,
+  'Production.Debug' => :debug,
+  'Production.Release' => :release,
+  'Staging.Debug' => :debug,
+  'Staging.Release' => :release
+
 
 target 'InnovatorRN' do
   config = use_native_modules!
@@ -17,7 +26,7 @@ target 'InnovatorRN' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable these next few lines.
-  use_flipper!
+  use_flipper!(configurations: ['Debug', 'Production.Debug', 'Staging.Debug'])
   post_install do |installer|
     flipper_post_install(installer)
   end

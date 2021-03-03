@@ -4,10 +4,10 @@ import {
   CardStyleInterpolators,
 } from '@react-navigation/stack';
 
-import SignIn from '../src/containers/onBoarding/SignIn';
-import SignUp from '../src/containers/onBoarding/SignUp';
-import Dashboard from '../src/containers/Home/Dashboard';
-import {screenNames} from './utilities/constants';
+import SignIn from '../src/containers/SignIn';
+import SignUp from '../src/containers/SignUp';
+import Dashboard from '../src/containers/Dashboard';
+import {screenNames} from '../navigation/navigationConstants';
 
 const AuthStack = createStackNavigator();
 
