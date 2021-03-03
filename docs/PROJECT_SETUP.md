@@ -27,7 +27,7 @@ Assuming that you have followed up the [Initial Getting Started Guide](https://r
 
     5.1 Running from the command-line
 
-      Use the following scripts(added into the `package.json` file) to run the andorid and iOS apps
+      Use the following scripts(added into the `package.json` file) to run the android and iOS apps
       * `yarn iosStagingDebug` for staging debug on iOS
       * `yarn iosProductionDebug` for production debug on iOS
       * `yarn androidStagingDebug` for staging debug on android
