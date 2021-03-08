@@ -1,0 +1,28 @@
+version: 2
+notify:
+  webhooks:
+    - url: https://api.reviewee.it/notification/ci
+jobs:
+  node:
+    working_directory: ~/react-native-innovator
+    docker:
+      - image: circleci/node:10.15.3
+    environment:
+      - REVIEWEE_URL: https://api.reviewee.it
+      - COMMITS_CHECK_ENDPOINT: repository/react-native-innovator/haveRejectedCommits
+      - COMMITS_CHECK_INDICATOR: \"success\":true
+    steps:
+      - run:
+          name: Check rejected commits
+          command: wget ${REVIEWEE_URL}/${COMMITS_CHECK_ENDPOINT} -q -O - | grep -q ${COMMITS_CHECK_INDICATOR}
+      - checkout
+         
+
+workflows:
+  version: 2
+  node-android-ios:
+    jobs:
+      - node
+              
+      
+              
