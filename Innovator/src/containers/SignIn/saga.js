@@ -1,18 +1,11 @@
-import {takeEvery, put, call} from 'redux-saga/effects';
-import {LOGIN_REQUESTED, REQUEST_SUCCESS} from './constants';
+import {put} from 'redux-saga/effects';
 import {screenNames} from '../../../navigation/navigationConstants';
 import {navigate} from '../../../navigation/NavigationService';
-
-function* onLoginRequested(props) {
-  const {
-    payload: {email},
-  } = props;
+import {requestSuccess} from './action'
+export function* onLoginRequested(props) {
   alert('Login Successfully');
-  navigate(screenNames.Dashboard, {email});
+  yield put(requestSuccess(props.payload));
 }
-function* onRequestSuccess({data}) {}
-function* sagaLogin() {
-  yield takeEvery(LOGIN_REQUESTED, onLoginRequested);
-  yield takeEvery(REQUEST_SUCCESS, onRequestSuccess);
+export function* onRequestSuccess() {
+  navigate(screenNames.Dashboard);
 }
-export default sagaLogin;

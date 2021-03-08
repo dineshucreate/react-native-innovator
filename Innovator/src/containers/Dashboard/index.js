@@ -3,13 +3,14 @@ import {Text, View, TouchableOpacity} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Style from './style';
 import {goBack} from '../../../navigation/NavigationService';
+import {connect} from 'react-redux';
 
 class DashBoard extends React.PureComponent {
   onCrossPress = () => {
     goBack();
   };
   render() {
-    const {email} = this.props.route.params;
+    const {loginData: {email}} = this.props;
     return (
       <View style={Style.constainer}>
         <TouchableOpacity onPress={this.onCrossPress}>
@@ -21,4 +22,9 @@ class DashBoard extends React.PureComponent {
     );
   }
 }
-export default DashBoard;
+const mapStateToProps = (state) => {
+  return {
+    loginData: state.loginReducer.loginData,
+  };
+};
+export default connect(mapStateToProps)(DashBoard);
