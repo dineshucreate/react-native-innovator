@@ -10,7 +10,9 @@ class DashBoard extends React.PureComponent {
     goBack();
   };
   render() {
-    const {loginData: {email}} = this.props;
+    const {
+      loginData: {email},
+    } = this.props;
     return (
       <View style={Style.constainer}>
         <TouchableOpacity onPress={this.onCrossPress}>
