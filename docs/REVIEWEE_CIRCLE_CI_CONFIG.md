@@ -2,7 +2,7 @@
 
 ## Steps:
 1. Create `.circleci` folder in root directory of project
-1. Create config.yml file in .circleci folder
+1. Create `config.yml` file in `.circleci` folder
 1. Copy below content in `config.yml` file and replace `github_repo_name` with name of your repo everywhere in this file
 
 
