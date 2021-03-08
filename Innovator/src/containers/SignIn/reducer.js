@@ -22,8 +22,7 @@ export const loginReducer = createReducer(INITIAL_STATE, {
     state.loading = true;
   },
   [requestSuccess.type]: (state, action) => {
-    const {data} = action.payload;
-    (state.loading = false), (state.loginData = data);
+    (state.loading = false), (state.loginData = action.payload);
   },
   [requestFailed.type]: (state, action) => {
     const {error} = action.payload;

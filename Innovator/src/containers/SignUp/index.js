@@ -2,11 +2,11 @@ import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Style from './style';
+import {goBack} from '../../../navigation/NavigationService';
 
 class SignUp extends React.PureComponent {
   onCrossPress = () => {
-    const {navigation} = this.props;
-    navigation.goBack();
+    goBack();
   };
   render() {
     return (

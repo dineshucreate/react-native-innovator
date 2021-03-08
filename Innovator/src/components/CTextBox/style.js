@@ -23,7 +23,7 @@ const style = StyleSheet.create({
     paddingTop: 4,
     paddingBottom: 4,
     backgroundColor: 'transparent',
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 14,
   },
   iconContainer: {
