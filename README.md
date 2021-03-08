@@ -13,7 +13,8 @@
 - [Appium](https://appium.io/) for e2e testing.
 - [Jest](https://jestjs.io/) for TDD.
 - [Bitrise](https://www.bitrise.io/) for CD and build automation.
-- [Reviewee-Circle CI config doc](./docs/REVIEWEE_CIRCLE_CI_CONFIG.md) for setting up reviewee notification on slack
+- `Reviewee` for code review.
+- `CircleCI`(used along with `Reviewee`) for CI and build notifications. Refere to [this](./docs/REVIEWEE_CIRCLE_CI_CONFIG.md) doc for setting up the build notifications.
 
 ## Android notes:
 
