@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Style from './style';
-import {goBack} from '../../../navigation/NavigationService';
+import {goBack} from '../../navigation/NavigationService';
 import {connect} from 'react-redux';
 
 class DashBoard extends React.PureComponent {
