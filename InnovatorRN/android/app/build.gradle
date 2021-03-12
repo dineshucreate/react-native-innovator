@@ -142,12 +142,12 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.rn.innovator"
+        applicationId "com.rn.InnovatorRN"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        resValue "string", "build_config_package", "com.rn.innovator"
+        resValue "string", "build_config_package", "com.rn.InnovatorRN"
     }
     splits {
         abi {
