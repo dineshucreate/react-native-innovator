@@ -1,6 +1,19 @@
-# react-native-innovator
+# <img src="https://media.giphy.com/media/w3Xk32k021sXJyFMIZ/giphy.gif" width="30" height="30" /> React Native Innovator Template
 
 ## Getting Started
+
+
+Create a new project using the template.
+### Automatically using CLI
+- **Note:** the command will fail if you have the global legacy react-native-cli installed. Make sure you uninstall it first. More info at [react-native-community/cli](https://github.com/react-native-community/cli#about).
+
+#### RN 0.63.4
+
+```bash
+$ npx react-native init MyApp --template https://github.com/uCreateit/react-native-innovator.git
+```
+
+### Manually
   Use [this setup guide](docs/PROJECT_SETUP.md) to setup the `Innovator` project on your local machine.
 
 ## Stack

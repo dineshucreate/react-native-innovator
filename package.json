@@ -1,0 +1,31 @@
+{
+  "name": "@RNInnovator/template",
+  "version": "1.0.0",
+  "description": "It is a React Native template with preconfigured set of packages and configurations based on Ucreate.it tech stack to start a new app.",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:uCreateit/react-native-innovator.git"
+  },
+  "keywords": [
+    "template",
+    "boilerplate",
+    "starter",
+    "react-native",
+    "react",
+    "native"
+  ],
+  "bugs": {
+    "url": "git@github.com:uCreateit/react-native-innovator.git/issues"
+  },
+  "dependencies": {
+    "react-native-localization": "^2.1.6"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release v${version}"
+    }
+  }
+}
