@@ -20,9 +20,7 @@
   "bugs": {
     "url": "git@github.com:uCreateit/react-native-innovator.git/issues"
   },
-  "dependencies": {
-    "react-native-localization": "^2.1.6"
-  },
+  "dependencies": {},
   "release-it": {
     "git": {
       "commitMessage": "chore: release v${version}"
