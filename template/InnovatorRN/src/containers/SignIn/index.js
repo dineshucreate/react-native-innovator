@@ -10,16 +10,15 @@ import {loginRequest, loginUpdateInput} from './action';
 import {testIds} from '../../../constants/appConstants';
 import {screenNames} from '../../../navigation/navigationConstants';
 import config from '../../config';
-class SignIn extends React.PureComponent {
+function SignIn (props) {
   onSignInPress = () => {
-    const {loginRequestAction} = this.props;
+    const {loginRequestAction} = props;
     loginRequestAction({email: 'dinesh@gmail.com', passwordLogin: 'Admin1'});
   };
   onSignUpPress = () => {
-    const {navigation} = this.props;
+    const {navigation} = props;
     navigation.navigate(screenNames.SignUp);
   };
-  render() {
     return (
       <SafeAreaView style={Style.screen}>
         <CLabel
@@ -41,7 +40,7 @@ class SignIn extends React.PureComponent {
             hidePassword={true}
           />
           <CButton
-            onPress={this.onSignInPress}
+            onPress={onSignInPress}
             text={strings('signIn.signIn')}
           />
         </View>
@@ -52,7 +51,7 @@ class SignIn extends React.PureComponent {
           />
           <TouchableOpacity
             style={{alignSelf: 'center'}}
-            onPress={this.onSignUpPress}>
+            onPress={onSignUpPress}>
             <CLabel
               style={{color: '#0000EE', marginLeft: 5}}
               text={strings('signIn.bottomText2')}
@@ -61,7 +60,6 @@ class SignIn extends React.PureComponent {
         </View>
       </SafeAreaView>
     );
-  }
 }
 const mapStateToProps = (state) => {
   return {

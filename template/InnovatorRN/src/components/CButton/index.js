@@ -1,16 +1,15 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import style from './style';
 
-class CButton extends PureComponent {
-  render() {
+function CButton(props) {
     const {
       textStyle,
       buttonContainerStyle,
       onPress,
       text,
       disabled,
-    } = this.props;
+    } = props;
     return (
       <View style={[style.buttonContainerStyle, buttonContainerStyle]}>
         <TouchableOpacity
@@ -24,6 +23,5 @@ class CButton extends PureComponent {
       </View>
     );
   }
-}
 
 export default CButton;

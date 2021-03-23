@@ -5,24 +5,22 @@ import Style from './style';
 import {goBack} from '../../../navigation/NavigationService';
 import {connect} from 'react-redux';
 
-class DashBoard extends React.PureComponent {
+function DashBoard (props) {
   onCrossPress = () => {
     goBack();
   };
-  render() {
     const {
       loginData: {email},
-    } = this.props;
+    } = props;
     return (
       <View style={Style.constainer}>
-        <TouchableOpacity onPress={this.onCrossPress}>
+        <TouchableOpacity onPress={onCrossPress}>
           <FontAwesome name="times" size={36} style={Style.crossButton} />
         </TouchableOpacity>
         <Text style={Style.textStyle}>Welcome To Dashboard!!!</Text>
         <Text style={Style.textStyle}>Login as: {email}</Text>
       </View>
     );
-  }
 }
 const mapStateToProps = (state) => {
   return {
