@@ -4,10 +4,10 @@ default_step_lib_source: 'https://github.com/bitrise-io/bitrise-steplib.git'
 project_type: react-native
 app:
   envs:
-  - PROJECT_LOCATION: Innovator/android
+  - PROJECT_LOCATION: InnovatorRN/android
   - MODULE: app
   - VARIANT: ''
-  - BITRISE_PROJECT_PATH: Innovator/ios/InnovatorRN.xcworkspace
+  - BITRISE_PROJECT_PATH: InnovatorRN/ios/InnovatorRN.xcworkspace
   - BITRISE_SCHEME: InnovatorRN_Staging
   - BITRISE_EXPORT_METHOD: ad-hoc
 workflows:
@@ -142,22 +142,22 @@ workflows:
             .env
 
 
-            cp .env ./Innovator/.env.staging
+            cp .env ./InnovatorRN/.env.staging
 
             cp .env /tmp/envfile
 
 
             printf "\n.env created with contents:\n\n"
 
-            cat ./Innovator/.env
+            cat ./InnovatorRN/.env
 
 
             printf "\n.env.staging created with contents:\n\n"
 
-            cat ./Innovator/.env.staging
+            cat ./InnovatorRN/.env.staging
     - yarn@0:
         inputs:
-        - workdir: Innovator
+        - workdir: InnovatorRN
         - command: install
         title: Install node_modules
     - install-missing-android-tools@2:
@@ -312,22 +312,22 @@ workflows:
             .env
 
 
-            cp .env ./Innovator/.env.staging
+            cp .env ./InnovatorRN/.env.staging
 
             cp .env /tmp/envfile
 
 
             printf "\n.env created with contents:\n\n"
 
-            cat ./Innovator/.env
+            cat ./InnovatorRN/.env
 
 
             printf "\n.env.staging created with contents:\n\n"
 
-            cat ./Innovator/.env.staging
+            cat ./InnovatorRN/.env.staging
     - yarn@0:
         inputs:
-        - workdir: Innovator
+        - workdir: InnovatorRN
         - command: install
         title: Install node_modules
     - install-missing-android-tools@2:
@@ -482,22 +482,22 @@ workflows:
             .env
 
 
-            cp .env ./Innovator/.env.staging
+            cp .env ./InnovatorRN/.env.staging
 
             cp .env /tmp/envfile
 
 
             printf "\n.env created with contents:\n\n"
 
-            cat ./Innovator/.env
+            cat ./InnovatorRN/.env
 
 
             printf "\n.env.staging created with contents:\n\n"
 
-            cat ./Innovator/.env.staging
+            cat ./InnovatorRN/.env.staging
     - yarn@0:
         inputs:
-        - workdir: Innovator
+        - workdir: InnovatorRN
         - command: install
         title: Install node_modules
     - cocoapods-install@2: {}
@@ -658,22 +658,22 @@ workflows:
             .env
 
 
-            cp .env ./Innovator/.env.staging
+            cp .env ./InnovatorRN/.env.staging
 
             cp .env /tmp/envfile
 
 
             printf "\n.env created with contents:\n\n"
 
-            cat ./Innovator/.env
+            cat ./InnovatorRN/.env
 
 
             printf "\n.env.staging created with contents:\n\n"
 
-            cat ./Innovator/.env.staging
+            cat ./InnovatorRN/.env.staging
     - yarn@0:
         inputs:
-        - workdir: Innovator
+        - workdir: InnovatorRN
         - command: install
         title: Install node_modules
     - cocoapods-install@2: {}
