@@ -1,7 +1,15 @@
 module.exports = {
   root: true,
   extends: '@react-native-community',
-  "rules": {
+  plugins: ["import"],
+  rules: {
     'no-console': ["error", { allow: ["warn", "error"] }],
-  }
+
+    // eslint-plugin-import
+    "import/first": 1,
+    "import/newline-after-import": 1,
+    "import/no-cycle": 2,
+    "import/no-duplicates": 1,
+    "import/no-unresolved": 2,
+  },
 };
