@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, View, SafeAreaView} from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Style from './style';
 import CTextBox from '../../components/CTextBox';
 import CButton from '../../components/CButton';
@@ -10,12 +10,18 @@ import {loginRequest, loginUpdateInput} from './action';
 import {testIds} from '../../../constants/appConstants';
 import {screenNames} from '../../../navigation/navigationConstants';
 import config from '../../config';
+
 function SignIn (props) {
-  onSignInPress = () => {
-    const {loginRequestAction} = props;
-    loginRequestAction({email: 'dinesh@gmail.com', passwordLogin: 'Admin1'});
+
+  const loading = useSelector(state => state.loginReducer.loading);
+  const loginDetails = useSelector(state => state.loginReducer.loginDetails);
+  const isError = useSelector(state => state.loginReducer.isError);
+  const dispatch = useDispatch();
+
+  const onSignInPress = () => {
+    dispatch(loginRequest({email: 'dinesh@gmail.com', passwordLogin: 'Admin1'}));
   };
-  onSignUpPress = () => {
+  const onSignUpPress = () => {
     const {navigation} = props;
     navigation.navigate(screenNames.SignUp);
   };
@@ -61,17 +67,5 @@ function SignIn (props) {
       </SafeAreaView>
     );
 }
-const mapStateToProps = (state) => {
-  return {
-    loading: state.loginReducer.loading,
-    loginDetails: state.loginReducer.loginDetails,
-    isError: state.loginReducer.isError,
-  };
-};
-const mapDispatchToProps = (dispatch) => ({
-  loginRequestAction: (email, passwordLogin) =>
-    dispatch(loginRequest(email, passwordLogin)),
-  updateInput: (key, value) => dispatch(loginUpdateInput(key, value)),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;

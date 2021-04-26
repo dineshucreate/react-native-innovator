@@ -5,7 +5,7 @@ import Style from './style';
 import {goBack} from '../../../navigation/NavigationService';
 
 function SignUp () {
-  onCrossPress = () => {
+  const onCrossPress = () => {
     goBack();
   };
     return (
