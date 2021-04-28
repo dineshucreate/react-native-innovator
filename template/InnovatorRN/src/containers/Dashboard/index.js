@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Style from './style';
 import { goBack } from '../../../navigation/NavigationService';
-import { useSelector } from 'react-redux';
+import { useSelector, connect } from 'react-redux';
 
 function DashBoard() {
   const loginData = useSelector(state => state.loginReducer.loginData);
