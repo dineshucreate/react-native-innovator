@@ -6,4 +6,7 @@ export const Colors = {
   redColor: '#FE5F6B',
   white: '#ffffff',
   black: '#000000',
+
+  black1: '#000000',
+  black2: 'rgba(8, 20, 29, 0.6)',
 };

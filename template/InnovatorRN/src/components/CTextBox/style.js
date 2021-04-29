@@ -6,7 +6,7 @@ const style = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
     margin: 5,
-    borderBottomColor: Colors.black,
+    borderBottomColor: Colors.black1,
     borderBottomWidth: 2,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -23,7 +23,7 @@ const style = StyleSheet.create({
     paddingTop: 4,
     paddingBottom: 4,
     backgroundColor: 'transparent',
-    color: Colors.black,
+    color: Colors.black1,
     fontSize: 14,
   },
   iconContainer: {

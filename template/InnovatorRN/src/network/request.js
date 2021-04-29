@@ -1,16 +1,17 @@
 import Axios, {AxiosRequestConfig} from 'axios';
-import {URLS} from '../constants/urls';
+
 import {strings} from '../locales/i18n';
+import {urls} from '../utilities/constants';
 
 export const axios = Axios.create({
-  baseURL: URLS.API_BASE_URL,
+  baseURL: urls.baseUrl,
   validateStatus: (status) =>
     status === 200 || status === 201 || status === 204 || status === 401,
 });
 
 export const request = (config: AxiosRequestConfig) =>
   axios(config).then((response) => {
-    const exceptionUrls = [URLS.LOGIN];
+    const exceptionUrls = [urls.login];
     if (response.status >= 400 && !config?.data?.password) {
       // handle failed requests, the check for the password in the data is to not send
       // password related requests to bug reporting tools (just suggestion)
