@@ -1,12 +1,15 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
+import {useSelector} from 'react-redux';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 import Style from './style';
-import { goBack } from '../../navigation/NavigationService';
-import { useSelector, connect } from 'react-redux';
+import {goBack} from '../../navigation/NavigationService';
+import {userSelector} from '../SignIn/slice';
 
 function DashBoard() {
-  const loginData = useSelector(state => state.loginReducer.loginData);
+  const userData = useSelector(userSelector);
+
   const onCrossPress = () => {
     goBack();
   };
@@ -16,7 +19,7 @@ function DashBoard() {
         <FontAwesome name="times" size={36} style={Style.crossButton} />
       </TouchableOpacity>
       <Text style={Style.textStyle}>Welcome To Dashboard!!!</Text>
-      <Text style={Style.textStyle}>Login as: {loginData.email}</Text>
+      <Text style={Style.textStyle}>Login as: {userData.email}</Text>
     </View>
   );
 }

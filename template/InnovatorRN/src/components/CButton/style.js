@@ -3,7 +3,7 @@ import {Colors} from '../../utilities/Colors';
 
 const style = StyleSheet.create({
   buttonStyle: {
-    backgroundColor: Colors.black,
+    backgroundColor: Colors.black1,
     borderRadius: 100,
     justifyContent: 'center',
     paddingTop: 20,
