@@ -1,11 +1,10 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {View, TextInput} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Style from './style';
 import {Colors} from '../../utilities/Colors';
 
-class CTextBox extends PureComponent {
-  render() {
+function CTextBox (props) {
     const {
       hidePassword,
       containerStyle,
@@ -17,7 +16,7 @@ class CTextBox extends PureComponent {
       leftIcon,
       editable,
       placeHolderText,
-    } = this.props;
+    } = props;
     return (
       <View style={[Style.container, containerStyle]}>
         <View style={Style.iconContainer}>
@@ -39,6 +38,5 @@ class CTextBox extends PureComponent {
       </View>
     );
   }
-}
 
 export default CTextBox;

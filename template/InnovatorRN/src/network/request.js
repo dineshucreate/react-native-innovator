@@ -1,6 +1,6 @@
 import Axios, {AxiosRequestConfig} from 'axios';
-import {URLS} from '../src/utilities/constants/paths/urls';
-import {strings} from '../src/utilities/locales/i18n';
+import {URLS} from '../constants/urls';
+import {strings} from '../locales/i18n';
 
 export const axios = Axios.create({
   baseURL: URLS.API_BASE_URL,

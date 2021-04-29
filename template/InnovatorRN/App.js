@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import store from './src/store';
 import RouterContent from './src/RouterComponent';
-import {navigationRef} from './navigation/NavigationService';
+import {navigationRef} from './src/navigation/NavigationService';
 
 const App = () => (
   <NavigationContainer ref={navigationRef}>

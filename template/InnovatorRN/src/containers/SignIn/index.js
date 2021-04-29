@@ -1,25 +1,30 @@
 import React from 'react';
 import {TouchableOpacity, View, SafeAreaView} from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Style from './style';
 import CTextBox from '../../components/CTextBox';
 import CButton from '../../components/CButton';
 import CLabel from '../../components/CLabel';
-import {strings} from '../../../locales/i18n';
+import {strings} from '../../locales/i18n';
 import {loginRequest, loginUpdateInput} from './action';
-import {testIds} from '../../../constants/appConstants';
-import {screenNames} from '../../../navigation/navigationConstants';
+import {testIds} from '../../constants/appConstants';
+import {screenNames} from '../../navigation/navigationConstants';
 import config from '../../config';
-class SignIn extends React.PureComponent {
-  onSignInPress = () => {
-    const {loginRequestAction} = this.props;
-    loginRequestAction({email: 'dinesh@gmail.com', passwordLogin: 'Admin1'});
+
+function SignIn (props) {
+
+  const loading = useSelector(state => state.loginReducer.loading);
+  const loginDetails = useSelector(state => state.loginReducer.loginDetails);
+  const isError = useSelector(state => state.loginReducer.isError);
+  const dispatch = useDispatch();
+
+  const onSignInPress = () => {
+    dispatch(loginRequest({email: 'dinesh@gmail.com', passwordLogin: 'Admin1'}));
   };
-  onSignUpPress = () => {
-    const {navigation} = this.props;
+  const onSignUpPress = () => {
+    const {navigation} = props;
     navigation.navigate(screenNames.SignUp);
   };
-  render() {
     return (
       <SafeAreaView style={Style.screen}>
         <CLabel
@@ -41,7 +46,7 @@ class SignIn extends React.PureComponent {
             hidePassword={true}
           />
           <CButton
-            onPress={this.onSignInPress}
+            onPress={onSignInPress}
             text={strings('signIn.signIn')}
           />
         </View>
@@ -52,7 +57,7 @@ class SignIn extends React.PureComponent {
           />
           <TouchableOpacity
             style={{alignSelf: 'center'}}
-            onPress={this.onSignUpPress}>
+            onPress={onSignUpPress}>
             <CLabel
               style={{color: '#0000EE', marginLeft: 5}}
               text={strings('signIn.bottomText2')}
@@ -61,19 +66,6 @@ class SignIn extends React.PureComponent {
         </View>
       </SafeAreaView>
     );
-  }
 }
-const mapStateToProps = (state) => {
-  return {
-    loading: state.loginReducer.loading,
-    loginDetails: state.loginReducer.loginDetails,
-    isError: state.loginReducer.isError,
-  };
-};
-const mapDispatchToProps = (dispatch) => ({
-  loginRequestAction: (email, passwordLogin) =>
-    dispatch(loginRequest(email, passwordLogin)),
-  updateInput: (key, value) => dispatch(loginUpdateInput(key, value)),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;
