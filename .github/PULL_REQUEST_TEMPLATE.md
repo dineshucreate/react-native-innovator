@@ -1,12 +1,12 @@
 <!-- Please assign atleast 1 reviewer to review the PR -->
 
 ### Fixed Issues
-<!-- Please mention the issue(if any) number or GitHub issue link which this PR is intending to fix/close -->
+<!-- Please mention the GitHub issue number or issue link which this PR is intending to fix/close -->
 
 Fixes #
 
 ### Proposed Changes
-<!-- Please provide a brief description about the proposed change in the PR -->
+<!-- Please mention the proposed changes in the PR -->
 
   -
   -
