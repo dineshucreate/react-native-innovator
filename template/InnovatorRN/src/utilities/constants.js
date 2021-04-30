@@ -1,5 +1,7 @@
+import config from '../config';
+
 export const urls = {
-  baseUrl: 'https://jsonplaceholder.typicode.com',
+  baseUrl: config.API_BASE_URL,
   users: 'users',
   login: 'login',
 };
