@@ -7,7 +7,7 @@ import {
 import SignIn from '../src/containers/SignIn';
 import SignUp from '../src/containers/SignUp';
 import Dashboard from '../src/containers/Dashboard';
-import {screenNames} from '../src/navigation/navigationConstants';
+import {screenNames} from './navigation/navigationConstants';
 
 const AuthStack = createStackNavigator();
 

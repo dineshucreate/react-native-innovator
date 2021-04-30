@@ -26,14 +26,14 @@ function CTextBox (props) {
           style={[Style.input, style]}
           underlineColorAndroid="transparent"
           placeholder={placeHolderText}
-          placeholderTextColor={Colors.black}
+          placeholderTextColor={Colors.black1}
           secureTextEntry={hidePassword}
           value={value}
           keyboardType={keyboardType}
           onChangeText={onChangeText}
           maxLength={maxLength}
           editable={editable}
-          selectionColor={Colors.black}
+          selectionColor={Colors.black1}
         />
       </View>
     );
