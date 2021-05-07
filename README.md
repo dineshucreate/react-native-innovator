@@ -34,10 +34,10 @@ $ npx react-native init MyApp --template https://github.com/uCreateit/react-nati
 ### Running the project
   Use [this](template/docs/PROJECT_SETUP.md) setup guide to run the project on your local machine.
 
-## Stack
+## Tech Stack
 - [React Native](https://facebook.github.io/react-native/) for building mobile apps using Javascript.
 - [Redux](https://redux.js.org/) a predictable state container for Javascript apps.
-- [Redux Saga](https://github.com/redux-saga/redux-saga) middleware for Redux.
+- [Redux Toolkit](https://redux-toolkit.js.org/) a toolset for efficient Redux development.
 - [React Navigation](https://reactnavigation.org/) for navigation.
 - [React Hooks](https://reactjs.org/docs/hooks-intro.html) for state management in functional components.
 - [react-native-config](https://github.com/luggit/react-native-config) for managing env variables. Refer to [this](https://ajaysidhu17.medium.com/configure-production-and-staging-environments-in-react-native-6c0d0faad034) article for staging and production environments setup details.
@@ -45,7 +45,7 @@ $ npx react-native init MyApp --template https://github.com/uCreateit/react-nati
 - [Jest](https://jestjs.io/) for TDD.
 - [Bitrise](https://www.bitrise.io/) for CD and build automation.
 - `Reviewee` for code review.
-- `CircleCI`(used along with `Reviewee`) for CI and build notifications. Refere to [this](template/docs/REVIEWEE_CIRCLE_CI_CONFIG.md) doc for setting up the build notifications.
+- [CircleCI](https://circleci.com/)(used along with `Reviewee`) for CI and build notifications. Refere to [this](template/docs/REVIEWEE_CIRCLE_CI_CONFIG.md) doc for setting up the build notifications.
 
 ## Android notes:
 
