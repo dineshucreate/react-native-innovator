@@ -18,10 +18,6 @@
     "appium": "appium",
     "appium:doctor": "appium-doctor"
   },
-  "lint-staged": {
-    "*.js": "lint:eslint"
-  },
-  "pre-commit": "lint:staged",
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "^5.9.10",
@@ -37,6 +33,7 @@
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.11.0",
+    "react-native-size-matters": "^0.4.0",
     "react-native-vector-icons": "^6.6.0",
     "react-redux": "^7.2.1"
   },
