@@ -1,13 +1,13 @@
 {
   "name": "@RNInnovator/template",
   "version": "1.0.0",
-  "description": "It is a React Native template with preconfigured set of packages and configurations based on Ucreate.it tech stack to start a new app.",
+  "description": "It is a React Native template with pre-configured set of packages and configurations based on Founder and Lightning tech stack to start a new app.",
   "scripts": {
     "test": "exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:uCreateit/react-native-innovator.git"
+    "url": "git@github.com:founderandlightning/react-native-innovator.git"
   },
   "keywords": [
     "template",
@@ -18,7 +18,7 @@
     "native"
   ],
   "bugs": {
-    "url": "git@github.com:uCreateit/react-native-innovator.git/issues"
+    "url": "git@github.com:founderandlightning/react-native-innovator.git/issues"
   },
   "dependencies": {},
   "release-it": {

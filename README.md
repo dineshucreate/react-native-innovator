@@ -1,4 +1,4 @@
-# <img src="https://media.giphy.com/media/w3Xk32k021sXJyFMIZ/giphy.gif" width="30" height="30" /> React Native Innovator Template
+# <img src="https://avatars.githubusercontent.com/u/12858694" width="30" height="30" /> React Native Innovator Template
 
 ## Getting Started
 
@@ -28,8 +28,29 @@ More info can be found at [react-native-community/cli](https://github.com/react-
 ### Initializing a new project with React-Native v0.63.4
 
 ```bash
-$ npx react-native init MyApp --template https://github.com/uCreateit/react-native-innovator.git
+$ npx react-native init MyApp --template https://github.com/founderandlightning/react-native-innovator.git
 ```
+
+### Required Bitrise Secrets and Env Vars
+As we are using the `Bitrise` for our CD flow, there are some required `secrets` and `env vars` which are being used in the workflow steps. Env vars should be pre-populated and be available to use. Please make sure you have these `secrets` and `env vars` on your Bitrise Dashboard.
+
+#### Secrets
+- APPLE_TEAM_ID
+- APPLE_ID_TEAM_NAME
+- APP_STORE_CONNECT_APP_ID
+- APPLE_EMAIL_ID
+- APPLE_ID_PASSWORD
+- APPLE_APP_SPECIFIC_PASSWORD
+- STAGING_RN_API_BASE_URL
+- PRODUCTION_RN_API_BASE_URL
+
+#### Env Vars
+- PROJECT_LOCATION
+- MODULE
+- BITRISE_PROJECT_PATH
+- BITRISE_EXPORT_METHOD
+- PRODUCTION_RN_BUNDLE_ID
+- STAGING_RN_BUNDLE_ID
 
 ### Running the project
   Use [this](template/docs/PROJECT_SETUP.md) setup guide to run the project on your local machine.

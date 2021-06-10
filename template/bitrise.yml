@@ -6,125 +6,168 @@ app:
   envs:
   - PROJECT_LOCATION: InnovatorRN/android
   - MODULE: app
-  - VARIANT: ''
   - BITRISE_PROJECT_PATH: InnovatorRN/ios/InnovatorRN.xcworkspace
-  - BITRISE_SCHEME: InnovatorRN_Staging
   - BITRISE_EXPORT_METHOD: ad-hoc
+  - opts:
+      is_expand: false
+    PRODUCTION_RN_BUNDLE_ID: com.InnovatorRN.production
+  - opts:
+      is_expand: false
+    STAGING_RN_BUNDLE_ID: com.InnovatorRN.staging
+  - opts:
+      is_expand: false
+    STAGING_RN_IS_PRODUCTION: 'false'
+  - opts:
+      is_expand: false
+    PRODUCTION_RN_IS_PRODUCTION: 'true'
 workflows:
-  AndroidStaging:
-    description: >
-      ## Configure Android part of the deploy workflow
-
-
-      To generate a signed APK:
-
-
-      1. Open the **Workflow** tab of your project on Bitrise.io
-
-      1. Add **Sign APK step right after Android Build step**
-
-      1. Click on **Code Signing** tab
-
-      1. Find the **ANDROID KEYSTORE FILE** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Fill the displayed 3 input fields:
-
-      1. **Keystore password**
-
-      1. **Keystore alias**
-
-      1. **Private key password**
-
-      1. Click on **[Save metadata]** button
-
-
-      That's it! From now on, **Sign APK** step will receive your uploaded
-      files.
-
-
-      ## Configure iOS part of the deploy workflow
-
-
-      To generate IPA:
-
-
-      1. Open the **Workflow** tab of your project on Bitrise.io
-
-      1. Click on **Code Signing** tab
-
-      1. Find the **PROVISIONING PROFILE** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Find the **CODE SIGNING IDENTITY** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Click on **Workflows** tab
-
-      1. Select deploy workflow
-
-      1. Select **Xcode Archive & Export for iOS** step
-
-      1. Open **Force Build Settings** input group
-
-      1. Specify codesign settings
-
-      Set **Force code signing with Development Team**, **Force code signing
-      with Code Signing Identity**
-
-      and **Force code signing with Provisioning Profile** inputs regarding to
-      the uploaded codesigning files
-
-      1. Specify manual codesign style
-
-      If the codesigning files, are generated manually on the Apple Developer
-      Portal,
-
-      you need to explicitly specify to use manual coedsign settings
-
-      (as ejected rn projects have xcode managed codesigning turned on).
-
-      To do so, add 'CODE_SIGN_STYLE="Manual"' to 'Additional options for
-      xcodebuild call' input
-
-
-      ## To run this workflow
-
-
-      If you want to run this workflow manually:
-
-
-      1. Open the app's build list page
-
-      2. Click on **[Start/Schedule a Build]** button
-
-      3. Select **deploy** in **Workflow** dropdown input
-
-      4. Click **[Start Build]** button
-
-
-      Or if you need this workflow to be started by a GIT event:
-
-
-      1. Click on **Triggers** tab
-
-      2. Setup your desired event (push/tag/pull) and select **deploy** workflow
-
-      3. Click on **[Done]** and then **[Save]** buttons
-
-
-      The next change in your repository that matches any of your trigger map
-      event will start **deploy** workflow.
+  iosStaging:
+    description: Use this workflow to generate the iOS Staging build.
     steps:
     - activate-ssh-key@4:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@4: {}
+    - git-clone@6: {}
     - cache-pull@2: {}
     - script@1:
-        title: Do anything with Script step
+        title: Set Environment Variables
+        inputs:
+        - content: >
+            #!/usr/bin/env bash
+
+            # Creates an .env from ENV variables for use with
+            react-native-config
+
+            ENV_WHITELIST=${ENV_WHITELIST:-"^(STAGING_RN_|RN_)"}
+
+            printf "Creating an .env file with the following whitelist:\n"
+
+            printf "%s\n" $ENV_WHITELIST
+
+            set | egrep -e $ENV_WHITELIST | sed -E 's/^STAGING_RN_|^RN_//g' >
+            .env
+
+
+            cp .env ./InnovatorRN/.env.staging
+
+            cp .env /tmp/envfile
+
+
+            printf "\n.env created with contents:\n\n"
+
+            cat ./InnovatorRN/.env
+
+
+            printf "\n.env.staging created with contents:\n\n"
+
+            cat ./InnovatorRN/.env.staging
+    - yarn@0:
+        inputs:
+        - workdir: InnovatorRN
+        - command: install
+        title: Install node_modules
+    - cocoapods-install@2: {}
+    - certificate-and-profile-installer@1: {}
+    - xcode-archive@3:
+        inputs:
+        - configuration: Staging.Release
+        - export_method: app-store
+        - team_id: $APPLE_TEAM_ID
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - scheme: InnovatorRN_Staging
+    - deploy-to-itunesconnect-deliver@2:
+        inputs:
+        - password: $APPLE_ID_PASSWORD
+        - app_password: $APPLE_APP_SPECIFIC_PASSWORD
+        - team_id: $APPLE_TEAM_ID
+        - team_name: $APPLE_ID_TEAM_NAME
+        - bundle_id: $STAGING_RN_BUNDLE_ID
+        - app_id: $APP_STORE_CONNECT_APP_ID
+        - itunescon_user: $APPLE_EMAIL_ID
+    - deploy-to-bitrise-io@1: {}
+    - cache-push@2:
+        is_always_run: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-12.3.x
+  iosProduction:
+    description: Use this workflow to generate the iOS Production build.
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - script@1:
+        title: Set Environment Variables
+        inputs:
+        - content: >
+            #!/usr/bin/env bash
+
+            # Creates an .env from ENV variables for use with
+            react-native-config
+
+            ENV_WHITELIST=${ENV_WHITELIST:-"^(STAGING_RN_|RN_)"}
+
+            printf "Creating an .env file with the following whitelist:\n"
+
+            printf "%s\n" $ENV_WHITELIST
+
+            set | egrep -e $ENV_WHITELIST | sed -E 's/^STAGING_RN_|^RN_//g' >
+            .env
+
+
+            cp .env ./InnovatorRN/.env.staging
+
+            cp .env /tmp/envfile
+
+
+            printf "\n.env created with contents:\n\n"
+
+            cat ./InnovatorRN/.env
+
+
+            printf "\n.env.staging created with contents:\n\n"
+
+            cat ./InnovatorRN/.env.staging
+    - yarn@0:
+        inputs:
+        - workdir: InnovatorRN
+        - command: install
+        title: Install node_modules
+    - cocoapods-install@2: {}
+    - certificate-and-profile-installer@1: {}
+    - xcode-archive@3:
+        inputs:
+        - configuration: Production.Release
+        - export_method: app-store
+        - team_id: $APPLE_TEAM_ID
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - scheme: InnovatorRN_Production
+    - deploy-to-itunesconnect-deliver@2:
+        inputs:
+        - password: $APPLE_ID_PASSWORD
+        - app_password: $APPLE_APP_SPECIFIC_PASSWORD
+        - team_id: $APPLE_TEAM_ID
+        - team_name: $APPLE_ID_TEAM_NAME
+        - app_id: $APP_STORE_CONNECT_APP_ID
+        - bundle_id: $PRODUCTION_RN_BUNDLE_ID
+        - itunescon_user: $APPLE_EMAIL_ID
+    - deploy-to-bitrise-io@1: {}
+    - cache-push@2:
+        is_always_run: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-12.3.x
+  androidStaging:
+    description: Use this workflow to generate the Android Staging build.
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - script@1:
+        title: Set Environment Variables
         inputs:
         - content: >
             #!/usr/bin/env bash
@@ -171,130 +214,18 @@ workflows:
     - sign-apk@1: {}
     - deploy-to-bitrise-io@1: {}
     - cache-push@2: {}
-    envs:
-    - opts:
-        is_expand: false
-      RN_IS_PRODUCTION: 'false'
-    - opts:
-        is_expand: false
-      RN_API_BASE_URL: www.google.com
     meta:
       bitrise.io:
         stack: linux-docker-android-20.04
-  AndroidProduction:
-    description: >
-      ## Configure Android part of the deploy workflow
-
-
-      To generate a signed APK:
-
-
-      1. Open the **Workflow** tab of your project on Bitrise.io
-
-      1. Add **Sign APK step right after Android Build step**
-
-      1. Click on **Code Signing** tab
-
-      1. Find the **ANDROID KEYSTORE FILE** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Fill the displayed 3 input fields:
-
-      1. **Keystore password**
-
-      1. **Keystore alias**
-
-      1. **Private key password**
-
-      1. Click on **[Save metadata]** button
-
-
-      That's it! From now on, **Sign APK** step will receive your uploaded
-      files.
-
-
-      ## Configure iOS part of the deploy workflow
-
-
-      To generate IPA:
-
-
-      1. Open the **Workflow** tab of your project on Bitrise.io
-
-      1. Click on **Code Signing** tab
-
-      1. Find the **PROVISIONING PROFILE** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Find the **CODE SIGNING IDENTITY** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Click on **Workflows** tab
-
-      1. Select deploy workflow
-
-      1. Select **Xcode Archive & Export for iOS** step
-
-      1. Open **Force Build Settings** input group
-
-      1. Specify codesign settings
-
-      Set **Force code signing with Development Team**, **Force code signing
-      with Code Signing Identity**
-
-      and **Force code signing with Provisioning Profile** inputs regarding to
-      the uploaded codesigning files
-
-      1. Specify manual codesign style
-
-      If the codesigning files, are generated manually on the Apple Developer
-      Portal,
-
-      you need to explicitly specify to use manual coedsign settings
-
-      (as ejected rn projects have xcode managed codesigning turned on).
-
-      To do so, add 'CODE_SIGN_STYLE="Manual"' to 'Additional options for
-      xcodebuild call' input
-
-
-      ## To run this workflow
-
-
-      If you want to run this workflow manually:
-
-
-      1. Open the app's build list page
-
-      2. Click on **[Start/Schedule a Build]** button
-
-      3. Select **deploy** in **Workflow** dropdown input
-
-      4. Click **[Start Build]** button
-
-
-      Or if you need this workflow to be started by a GIT event:
-
-
-      1. Click on **Triggers** tab
-
-      2. Setup your desired event (push/tag/pull) and select **deploy** workflow
-
-      3. Click on **[Done]** and then **[Save]** buttons
-
-
-      The next change in your repository that matches any of your trigger map
-      event will start **deploy** workflow.
+  androidProduction:
+    description: Use this workflow to generate the Android Production workflow.
     steps:
     - activate-ssh-key@4:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@4: {}
+    - git-clone@6: {}
     - cache-pull@2: {}
     - script@1:
-        title: Do anything with Script step
+        title: Set Environment Variables
         inputs:
         - content: >
             #!/usr/bin/env bash
@@ -341,368 +272,9 @@ workflows:
     - sign-apk@1: {}
     - deploy-to-bitrise-io@1: {}
     - cache-push@2: {}
-    envs:
-    - opts:
-        is_expand: false
-      RN_IS_PRODUCTION: 'true'
-    - opts:
-        is_expand: false
-      RN_API_BASE_URL: www.yahoo.com
     meta:
       bitrise.io:
         stack: linux-docker-android-20.04
-  iosStaging:
-    description: >
-      ## Configure Android part of the deploy workflow
-
-
-      To generate a signed APK:
-
-
-      1. Open the **Workflow** tab of your project on Bitrise.io
-
-      1. Add **Sign APK step right after Android Build step**
-
-      1. Click on **Code Signing** tab
-
-      1. Find the **ANDROID KEYSTORE FILE** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Fill the displayed 3 input fields:
-
-      1. **Keystore password**
-
-      1. **Keystore alias**
-
-      1. **Private key password**
-
-      1. Click on **[Save metadata]** button
-
-
-      That's it! From now on, **Sign APK** step will receive your uploaded
-      files.
-
-
-      ## Configure iOS part of the deploy workflow
-
-
-      To generate IPA:
-
-
-      1. Open the **Workflow** tab of your project on Bitrise.io
-
-      1. Click on **Code Signing** tab
-
-      1. Find the **PROVISIONING PROFILE** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Find the **CODE SIGNING IDENTITY** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Click on **Workflows** tab
-
-      1. Select deploy workflow
-
-      1. Select **Xcode Archive & Export for iOS** step
-
-      1. Open **Force Build Settings** input group
-
-      1. Specify codesign settings
-
-      Set **Force code signing with Development Team**, **Force code signing
-      with Code Signing Identity**
-
-      and **Force code signing with Provisioning Profile** inputs regarding to
-      the uploaded codesigning files
-
-      1. Specify manual codesign style
-
-      If the codesigning files, are generated manually on the Apple Developer
-      Portal,
-
-      you need to explicitly specify to use manual coedsign settings
-
-      (as ejected rn projects have xcode managed codesigning turned on).
-
-      To do so, add 'CODE_SIGN_STYLE="Manual"' to 'Additional options for
-      xcodebuild call' input
-
-
-      ## To run this workflow
-
-
-      If you want to run this workflow manually:
-
-
-      1. Open the app's build list page
-
-      2. Click on **[Start/Schedule a Build]** button
-
-      3. Select **deploy** in **Workflow** dropdown input
-
-      4. Click **[Start Build]** button
-
-
-      Or if you need this workflow to be started by a GIT event:
-
-
-      1. Click on **Triggers** tab
-
-      2. Setup your desired event (push/tag/pull) and select **deploy** workflow
-
-      3. Click on **[Done]** and then **[Save]** buttons
-
-
-      The next change in your repository that matches any of your trigger map
-      event will start **deploy** workflow.
-    steps:
-    - activate-ssh-key@4:
-        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@4: {}
-    - cache-pull@2: {}
-    - script@1:
-        title: Set Environments
-        inputs:
-        - content: >
-            #!/usr/bin/env bash
-
-            # Creates an .env from ENV variables for use with
-            react-native-config
-
-            ENV_WHITELIST=${ENV_WHITELIST:-"^(STAGING_RN_|RN_)"}
-
-            printf "Creating an .env file with the following whitelist:\n"
-
-            printf "%s\n" $ENV_WHITELIST
-
-            set | egrep -e $ENV_WHITELIST | sed -E 's/^STAGING_RN_|^RN_//g' >
-            .env
-
-
-            cp .env ./InnovatorRN/.env.staging
-
-            cp .env /tmp/envfile
-
-
-            printf "\n.env created with contents:\n\n"
-
-            cat ./InnovatorRN/.env
-
-
-            printf "\n.env.staging created with contents:\n\n"
-
-            cat ./InnovatorRN/.env.staging
-    - yarn@0:
-        inputs:
-        - workdir: InnovatorRN
-        - command: install
-        title: Install node_modules
-    - cocoapods-install@2: {}
-    - certificate-and-profile-installer@1: {}
-    - xcode-archive@3:
-        inputs:
-        - configuration: Staging.Release
-        - export_method: app-store
-        - team_id: $APPLE_TEAM_ID
-        - compile_bitcode: 'no'
-        - upload_bitcode: 'no'
-        - scheme: InnovatorRN_Staging
-    - deploy-to-itunesconnect-deliver@2: {}
-    - deploy-to-bitrise-io@1: {}
-    - cache-push@2:
-        is_always_run: true
-    envs:
-    - opts:
-        is_expand: false
-      RN_IS_PRODUCTION: 'false'
-    - opts:
-        is_expand: false
-      RN_API_BASE_URL: www.google.com
-    - opts:
-        is_expand: false
-      APPLE_TEAM_ID: 5796Z84ZBE
-    meta:
-      bitrise.io:
-        stack: osx-xcode-12.3.x
-  iosProduction:
-    description: >
-      ## Configure Android part of the deploy workflow
-
-
-      To generate a signed APK:
-
-
-      1. Open the **Workflow** tab of your project on Bitrise.io
-
-      1. Add **Sign APK step right after Android Build step**
-
-      1. Click on **Code Signing** tab
-
-      1. Find the **ANDROID KEYSTORE FILE** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Fill the displayed 3 input fields:
-
-      1. **Keystore password**
-
-      1. **Keystore alias**
-
-      1. **Private key password**
-
-      1. Click on **[Save metadata]** button
-
-
-      That's it! From now on, **Sign APK** step will receive your uploaded
-      files.
-
-
-      ## Configure iOS part of the deploy workflow
-
-
-      To generate IPA:
-
-
-      1. Open the **Workflow** tab of your project on Bitrise.io
-
-      1. Click on **Code Signing** tab
-
-      1. Find the **PROVISIONING PROFILE** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Find the **CODE SIGNING IDENTITY** section
-
-      1. Click or drop your file on the upload file field
-
-      1. Click on **Workflows** tab
-
-      1. Select deploy workflow
-
-      1. Select **Xcode Archive & Export for iOS** step
-
-      1. Open **Force Build Settings** input group
-
-      1. Specify codesign settings
-
-      Set **Force code signing with Development Team**, **Force code signing
-      with Code Signing Identity**
-
-      and **Force code signing with Provisioning Profile** inputs regarding to
-      the uploaded codesigning files
-
-      1. Specify manual codesign style
-
-      If the codesigning files, are generated manually on the Apple Developer
-      Portal,
-
-      you need to explicitly specify to use manual coedsign settings
-
-      (as ejected rn projects have xcode managed codesigning turned on).
-
-      To do so, add 'CODE_SIGN_STYLE="Manual"' to 'Additional options for
-      xcodebuild call' input
-
-
-      ## To run this workflow
-
-
-      If you want to run this workflow manually:
-
-
-      1. Open the app's build list page
-
-      2. Click on **[Start/Schedule a Build]** button
-
-      3. Select **deploy** in **Workflow** dropdown input
-
-      4. Click **[Start Build]** button
-
-
-      Or if you need this workflow to be started by a GIT event:
-
-
-      1. Click on **Triggers** tab
-
-      2. Setup your desired event (push/tag/pull) and select **deploy** workflow
-
-      3. Click on **[Done]** and then **[Save]** buttons
-
-
-      The next change in your repository that matches any of your trigger map
-      event will start **deploy** workflow.
-    steps:
-    - activate-ssh-key@4:
-        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@4: {}
-    - cache-pull@2: {}
-    - script@1:
-        title: Set Environments
-        inputs:
-        - content: >
-            #!/usr/bin/env bash
-
-            # Creates an .env from ENV variables for use with
-            react-native-config
-
-            ENV_WHITELIST=${ENV_WHITELIST:-"^(STAGING_RN_|RN_)"}
-
-            printf "Creating an .env file with the following whitelist:\n"
-
-            printf "%s\n" $ENV_WHITELIST
-
-            set | egrep -e $ENV_WHITELIST | sed -E 's/^STAGING_RN_|^RN_//g' >
-            .env
-
-
-            cp .env ./InnovatorRN/.env.staging
-
-            cp .env /tmp/envfile
-
-
-            printf "\n.env created with contents:\n\n"
-
-            cat ./InnovatorRN/.env
-
-
-            printf "\n.env.staging created with contents:\n\n"
-
-            cat ./InnovatorRN/.env.staging
-    - yarn@0:
-        inputs:
-        - workdir: InnovatorRN
-        - command: install
-        title: Install node_modules
-    - cocoapods-install@2: {}
-    - certificate-and-profile-installer@1: {}
-    - xcode-archive@3:
-        inputs:
-        - configuration: Production.Release
-        - export_method: app-store
-        - team_id: $APPLE_TEAM_ID
-        - compile_bitcode: 'no'
-        - upload_bitcode: 'no'
-        - scheme: InnovatorRN_Production
-    - deploy-to-itunesconnect-deliver@2: {}
-    - deploy-to-bitrise-io@1: {}
-    - cache-push@2:
-        is_always_run: true
-    envs:
-    - opts:
-        is_expand: false
-      RN_IS_PRODUCTION: 'false'
-    - opts:
-        is_expand: false
-      RN_API_BASE_URL: www.google.com
-    - opts:
-        is_expand: false
-      APPLE_TEAM_ID: 5796Z84ZBE
-    meta:
-      bitrise.io:
-        stack: osx-xcode-12.3.x
 trigger_map:
 - tag: '*'
-  workflow: AndroidProduction
+  workflow: androidProduction

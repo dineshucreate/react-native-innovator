@@ -1,4 +1,4 @@
-git_url("https://github.com/uCreateit/react-native-innovator")
+git_url("https://github.com/founderandlightning/react-native-innovator")
 
 storage_mode("git")
 
